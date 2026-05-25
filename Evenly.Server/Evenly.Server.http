@@ -1,0 +1,6 @@
+@Evenly.Server_HostAddress = http://localhost:5054
+
+GET {{Evenly.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

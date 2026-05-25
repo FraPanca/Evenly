@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Evenly.Pages.RegistraRimborsoPage"
+             Title="Rimborsa"
+             BackgroundColor="{StaticResource PageBg}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24,20" Spacing="16">
+
+            <Label Text="Transazioni suggerite" FontSize="20"
+                   FontAttributes="Bold" TextColor="#6E88ED"/>
+            <Label Text="Tocca una transazione per rimborsarla in un clic."
+                   FontSize="13" TextColor="#8099B8"/>
+
+            <CollectionView x:Name="TransazioniCollection"
+                            SelectionMode="Single"
+                            HeightRequest="500"
+                            SelectionChanged="OnTransazioneSelezionata">
+                <CollectionView.EmptyView>
+                    <Label Text="Non hai debiti da saldare in questo gruppo."
+                           TextColor="#78D7C1" FontAttributes="Italic"
+                           HorizontalOptions="Center" Margin="0,24"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,4" Padding="16" StrokeShape="RoundRectangle 12"
+                                Stroke="#253550" BackgroundColor="#10192A">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout VerticalOptions="Center" Spacing="4">
+                                    <Label FontSize="15">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding DebitoreUsername}"
+                                                      FontAttributes="Bold" TextColor="#E8F0FE"/>
+                                                <Span Text=" → " TextColor="#8099B8"/>
+                                                <Span Text="{Binding CreditoreUsername}"
+                                                      FontAttributes="Bold" TextColor="#E8F0FE"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label FontSize="14" FontAttributes="Bold" TextColor="#78D7C1">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Importo, StringFormat='{0:F2}'}"/>
+                                                <Span Text=" €"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </VerticalStackLayout>
+                                <Label Grid.Column="1" Text="Rimborsa ›"
+                                       TextColor="#6E88ED" FontSize="13"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label x:Name="ErrorLabel" TextColor="#F87171" IsVisible="False"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

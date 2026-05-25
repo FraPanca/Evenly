@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Evenly.Pages.HomePage"
+             Title="I miei gruppi"
+             BackgroundColor="{StaticResource PageBg}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Profilo" Clicked="OnProfiloClicked" />
+        <ToolbarItem Text="Logout" Clicked="OnLogoutClicked" />
+        <ToolbarItem Text="+ Gruppo" Clicked="OnNuovoGruppoClicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,*">
+
+        <VerticalStackLayout Grid.Row="0" Padding="20,16,20,8">
+            <HorizontalStackLayout Spacing="12" Margin="0,0,0,4" VerticalOptions="Center">
+                <Image Source="evenly_logo.png" WidthRequest="42" HeightRequest="42"
+                       VerticalOptions="Center"/>
+                <VerticalStackLayout VerticalOptions="Center" Spacing="1">
+                    <Label x:Name="BenvenutoLabel" FontSize="18" FontAttributes="Bold"
+                           TextColor="#6E88ED"/>
+                    <Label Text="Seleziona un gruppo o creane uno nuovo"
+                           FontSize="13" TextColor="#8099B8"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+        <RefreshView Grid.Row="1" x:Name="RefreshView" Refreshing="OnRefreshing">
+            <CollectionView x:Name="GruppiCollection"
+                            SelectionMode="Single"
+                            SelectionChanged="OnGruppoSelezionato"
+                            Margin="16,0">
+                <CollectionView.EmptyView>
+                    <Label Text="Nessun gruppo. Creane uno o accedi a uno esistente."
+                           HorizontalOptions="Center" VerticalOptions="Center"
+                           TextColor="#8099B8" Margin="20,40"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,4" Padding="16" StrokeShape="RoundRectangle 12"
+                                Stroke="#253550" BackgroundColor="#10192A">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout VerticalOptions="Center">
+                                    <Label Text="{Binding GroupName}" FontSize="15"
+                                           FontAttributes="Bold" TextColor="#E8F0FE"/>
+                                    <Label Text="{Binding ValutaRiferimento}"
+                                           FontSize="12" TextColor="#8099B8"/>
+                                </VerticalStackLayout>
+                                <Label Grid.Column="1"
+                                       Text="{Binding NumeroPartecipanti, StringFormat='{0} partec.'}"
+                                       VerticalOptions="Center" TextColor="#8099B8" FontSize="12"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+    </Grid>
+
+</ContentPage>

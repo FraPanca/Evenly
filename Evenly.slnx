@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Evenly.Server/Evenly.Server.csproj" />
+  <Project Path="Evenly.Tests/Evenly.Tests.csproj" />
+  <Project Path="Evenly/Evenly.csproj" />
+</Solution>

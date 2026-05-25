@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Evenly.Pages.InserisciSpesaPage"
+             Title="Nuova Spesa"
+             BackgroundColor="{StaticResource PageBg}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24,20" Spacing="12">
+
+            <Label Text="Causale" FontAttributes="Bold"/>
+            <Entry x:Name="CausaleEntry" Placeholder="es. Cena, Benzina, Hotel..."/>
+
+            <Label Text="Importo" FontAttributes="Bold"/>
+            <Entry x:Name="ImportoEntry" Placeholder="0.00" Keyboard="Numeric"/>
+
+            <Label Text="Data" FontAttributes="Bold"/>
+            <DatePicker x:Name="DataPicker"/>
+
+            <Label Text="Metodo di divisione" FontAttributes="Bold"/>
+            <Picker x:Name="MetodoPicker" SelectedIndexChanged="OnMetodoChanged">
+                <Picker.Items>
+                    <x:String>Divisione Equa</x:String>
+                    <x:String>Importi Esatti</x:String>
+                    <x:String>Percentuale</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <!-- Sezione parametri divisione (visibile solo per Importi Esatti / Percentuale) -->
+            <Label x:Name="ParametriLabel" IsVisible="False"
+                   FontAttributes="Bold" Margin="0,8,0,0"/>
+            <VerticalStackLayout x:Name="ParametriPanel" IsVisible="False" Spacing="6"/>
+
+            <Label Text="Note (opzionale)" FontAttributes="Bold" Margin="0,8,0,0"/>
+            <Editor x:Name="NoteEditor" Placeholder="Aggiungi una nota alla spesa..."
+                    HeightRequest="72" Margin="0,4,0,0"/>
+
+            <Label Text="Partecipanti (seleziona almeno uno oltre a te)"
+                   FontAttributes="Bold" Margin="0,8,0,0"/>
+            <CollectionView x:Name="PartecipantiCollection"
+                            SelectionMode="Multiple"
+                            HeightRequest="200">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="4,6" ColumnDefinitions="Auto,*">
+                            <CheckBox x:Name="CheckBox" Grid.Column="0"
+                                      IsChecked="{Binding IsSelected}"/>
+                            <Label Grid.Column="1" Text="{Binding Username}"
+                                   VerticalOptions="Center" FontSize="15"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label x:Name="ErrorLabel" TextColor="#F87171" IsVisible="False"/>
+
+            <Button x:Name="SalvaBtn" Text="Salva Spesa" BackgroundColor="#6E88ED"
+                    TextColor="#0F172A" Clicked="OnSalvaClicked" Margin="0,8,0,0"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

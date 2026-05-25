@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Evenly.Pages.RegistrazionePage"
+             Title="Registrazione"
+             BackgroundColor="{StaticResource PageBg}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="40,30" Spacing="12">
+
+            <Label Text="Crea Account" FontSize="26" FontAttributes="Bold"
+                   TextColor="#6E88ED" Margin="0,0,0,16"/>
+
+            <Label Text="Username" FontAttributes="Bold"/>
+            <Entry x:Name="UsernameEntry" Placeholder="Scegli un username" />
+
+            <Label Text="Nome" FontAttributes="Bold"/>
+            <Entry x:Name="NomeEntry" Placeholder="Il tuo nome" />
+
+            <Label Text="Cognome" FontAttributes="Bold"/>
+            <Entry x:Name="CognomeEntry" Placeholder="Il tuo cognome" />
+
+            <Label Text="Email" FontAttributes="Bold"/>
+            <Entry x:Name="EmailEntry" Placeholder="email@esempio.it" Keyboard="Email"/>
+
+            <Label Text="Password" FontAttributes="Bold"/>
+            <Entry x:Name="PasswordEntry" Placeholder="Almeno 8 caratteri" IsPassword="True" />
+
+            <Label Text="Valuta preferita" FontAttributes="Bold"/>
+            <Picker x:Name="ValutaPicker" Title="Seleziona valuta">
+                <Picker.Items>
+                    <x:String>EUR</x:String>
+                    <x:String>USD</x:String>
+                    <x:String>GBP</x:String>
+                    <x:String>CHF</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label x:Name="ErrorLabel" TextColor="#F87171" IsVisible="False" />
+
+            <Button x:Name="RegisterBtn" Text="Registrati" BackgroundColor="#6E88ED"
+                    TextColor="#0F172A" Clicked="OnRegisterClicked" Margin="0,8,0,0"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

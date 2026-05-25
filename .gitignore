@@ -1,0 +1,48 @@
+# Build output
+bin/
+obj/
+out/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vscode/
+
+# NuGet
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# .NET MAUI / Android
+*.apk
+*.aab
+*.ipa
+*.app
+platforms/android/.gradle/
+platforms/android/build/
+
+# iOS
+*.xcarchive
+*.dSYM/
+
+# Database locale (non committare il DB di sviluppo)
+*.mdf
+*.ldf
+*.ndf
+
+# Log di sistema (generati a runtime)
+Evenly.Server/logs/
+
+# Secrets / configurazione locale sensibile
+**/appsettings.Local.json
+**/secrets.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

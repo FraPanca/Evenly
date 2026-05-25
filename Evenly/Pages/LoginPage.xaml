@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Evenly.Pages.LoginPage"
+             Title="Evenly"
+             BackgroundColor="{StaticResource PageBg}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="36,60,36,36" Spacing="0">
+
+            <!-- Logo -->
+            <Image Source="evenly_logo.png" WidthRequest="130" HeightRequest="130"
+                   HorizontalOptions="Center" Margin="0,0,0,8"/>
+            <Label Text="Gestione spese condivise" FontSize="14"
+                   TextColor="#8099B8" HorizontalOptions="Center" Margin="0,0,0,44"/>
+
+            <!-- Fields -->
+            <Label Text="Username" FontSize="13" TextColor="#8099B8"/>
+            <Entry x:Name="UsernameEntry" Placeholder="Il tuo username" Margin="0,6,0,16"/>
+
+            <Label Text="Password" FontSize="13" TextColor="#8099B8"/>
+            <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" Margin="0,6,0,0"/>
+
+            <Label x:Name="ErrorLabel" TextColor="#F87171" IsVisible="False" FontSize="13"
+                   Margin="0,10,0,0"/>
+
+            <Button x:Name="LoginBtn" Text="Accedi"
+                    BackgroundColor="#6E88ED" TextColor="#0F172A"
+                    Clicked="OnLoginClicked" Margin="0,24,0,0"/>
+
+            <Button Text="Non hai un account? Registrati"
+                    BackgroundColor="Transparent" TextColor="#6E88ED"
+                    Clicked="OnRegistratiClicked" Margin="0,4,0,0"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

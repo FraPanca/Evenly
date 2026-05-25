@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Evenly.Pages.GestioneMembriPage"
+             Title="Gestione membri"
+             BackgroundColor="{StaticResource PageBg}">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <CollectionView x:Name="MembriCollection" Grid.Row="0" Margin="16,12,16,0">
+            <CollectionView.EmptyView>
+                <Label Text="Nessun membro." TextColor="#4A6480"
+                       FontAttributes="Italic" HorizontalOptions="Center" Margin="0,40"/>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,4" Padding="14" StrokeShape="RoundRectangle 12"
+                            Stroke="#253550" BackgroundColor="#10192A">
+                        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+
+                            <VerticalStackLayout VerticalOptions="Center" Spacing="2">
+                                <Label Text="{Binding Username}" FontSize="14"
+                                       FontAttributes="Bold" TextColor="#E8F0FE"/>
+                                <Label FontSize="12" TextColor="#8099B8">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Nome}"/>
+                                            <Span Text=" "/>
+                                            <Span Text="{Binding Cognome}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </VerticalStackLayout>
+
+                            <Border Grid.Column="1" VerticalOptions="Center"
+                                    StrokeShape="RoundRectangle 6" Padding="8,4"
+                                    BackgroundColor="{Binding BadgeColor}" Stroke="Transparent">
+                                <Label Text="{Binding RuoloBadge}" FontSize="11"
+                                       TextColor="White" FontAttributes="Bold"/>
+                            </Border>
+
+                            <Button Grid.Column="2" Text="Rimuovi"
+                                    BackgroundColor="#DC2626" TextColor="White"
+                                    IsVisible="{Binding PuoEssereRimosso}"
+                                    Clicked="OnRimuoviClicked"
+                                    CommandParameter="{Binding Username}"
+                                    FontSize="12" Padding="10,6" CornerRadius="8"
+                                    VerticalOptions="Center"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label x:Name="ErrorLabel" Grid.Row="1" TextColor="#F87171"
+               IsVisible="False" Margin="16,8"/>
+
+    </Grid>
+</ContentPage>

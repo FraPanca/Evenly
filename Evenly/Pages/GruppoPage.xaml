@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Evenly.Pages.GruppoPage"
+             BackgroundColor="{StaticResource PageBg}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+ Spesa" Clicked="OnNuovaSpesaClicked" />
+        <ToolbarItem Text="Rimborso" Clicked="OnRimborsoClicked" />
+        <ToolbarItem Text="Condividi" Clicked="OnCondividiClicked" />
+        <ToolbarItem Text="Lascia" Clicked="OnLasciaGruppoClicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,Auto,*">
+
+        <!-- Bilancio riepilogo -->
+        <Border Grid.Row="0" Margin="16,12,16,4" Padding="16"
+                StrokeShape="RoundRectangle 14" Stroke="#1A3A78"
+                BackgroundColor="#0B1422">
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Bilancio" FontAttributes="Bold" FontSize="15" TextColor="#6E88ED"/>
+                <CollectionView x:Name="BilancioCollection">
+                    <CollectionView.EmptyView>
+                        <Label Text="Tutti in pari!" TextColor="#78D7C1" FontAttributes="Italic"/>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label FontSize="13" TextColor="#E8F0FE">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding DebitoreUsername}" FontAttributes="Bold"/>
+                                        <Span Text=" deve "/>
+                                        <Span Text="{Binding Importo, StringFormat='{0:F2}'}" FontAttributes="Bold"/>
+                                        <Span Text=" a "/>
+                                        <Span Text="{Binding CreditoreUsername}" FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Saldi personali -->
+        <CollectionView Grid.Row="1" x:Name="SaldiCollection" Margin="16,0">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="8"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="12,8" StrokeShape="RoundRectangle 10"
+                            Stroke="#253550" BackgroundColor="#10192A">
+                        <VerticalStackLayout Spacing="2" MinimumWidthRequest="90">
+                            <Label Text="{Binding Username}" FontSize="12" TextColor="#8099B8"/>
+                            <Label FontSize="15" FontAttributes="Bold">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Valore, StringFormat='{0:F2}'}"
+                                              TextColor="{Binding StatoColore}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Lista spese -->
+        <RefreshView Grid.Row="2" x:Name="RefreshView" Refreshing="OnRefreshing">
+            <CollectionView x:Name="SpeseCollection" Margin="16,8,16,0"
+                            SelectionMode="Single"
+                            SelectionChanged="OnSpesaSelezionata">
+                <CollectionView.EmptyView>
+                    <Label Text="Nessuna spesa registrata." HorizontalOptions="Center"
+                           TextColor="#8099B8" Margin="0,30"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,4" Padding="14" StrokeShape="RoundRectangle 12"
+                                Stroke="#253550" BackgroundColor="#10192A">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Causale}" FontSize="15"
+                                           FontAttributes="Bold" TextColor="#E8F0FE"/>
+                                    <Label FontSize="12" TextColor="#8099B8">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Pagato da: "/>
+                                                <Span Text="{Binding PaganteUsername}" FontAttributes="Bold"/>
+                                                <Span Text=" · "/>
+                                                <Span Text="{Binding Data, StringFormat='{0:dd/MM/yyyy}'}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </VerticalStackLayout>
+                                <Label Grid.Column="1" VerticalOptions="Center"
+                                       FontSize="16" FontAttributes="Bold" TextColor="#6E88ED">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Importo, StringFormat='{0:F2}'}"/>
+                                            <Span Text=" "/>
+                                            <Span Text="{Binding Valuta}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+    </Grid>
+</ContentPage>
