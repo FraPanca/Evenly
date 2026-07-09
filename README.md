@@ -117,7 +117,7 @@ Per client iOS, uso su dispositivo fisico, configurazione di rete per piattaform
 
 ### Licenza
 
-MIT — concordata tra tutti i membri del team (Gruppo 4).
+MIT — concordata tra i membri del team.
 
 ---
 
@@ -229,4 +229,4 @@ For the iOS client, running on a physical device, per-platform network configura
 
 ### License
 
-MIT — agreed upon by all team members (Group 4).
+MIT — agreed upon by team members.
